@@ -1,6 +1,6 @@
 
 
-from Movement import *
+from Sequence import *
 from File_Manipulation import *
 from Matrix import *
 
@@ -38,7 +38,7 @@ print("====================================\n")
 #Input nama file dan validasi
 while True:
   filename = input("Please input the input's .txt file: ")
-  
+  filename = f"./test/{filename}"
   if check_filename(filename):
     print(f"Horray ! The file '{filename}' has been found. Let's Proceed !")
     break
@@ -51,7 +51,7 @@ isi_file = [line.strip() for line in input_file.readlines()]
 
 
 #Ekstrak variabel dari array isi_file
-buffer = int(isi_file[0])
+n_buffer = int(isi_file[0])
 matrix_width = int(isi_file[1].split()[0])
 matrix_height = int(isi_file[1].split()[1])
 
@@ -74,7 +74,7 @@ for i in range (matrix_height):
 idx = matrix_height + 2 #Idx baru
 
 n_seq = int(isi_file[idx])
-print(n_seq)
+
 
 idx = idx + 1 #Update
 seq_all = []
@@ -92,60 +92,45 @@ for i in range (0,2*n_seq,2):
 #Proses
 start_time = start_time()
 
-all_solution = [] #Inisiasi array yang menampung total poin[0], seluruh token True[1], dan Koordiat token[2]
+row_best = [] #Menyimpan total poin[0], isi buffer[1], dan koordidnat token[2] dengan poin terbaik untuk koordinat (i,1)
+buffer = []
+koordinat = []
 
-#Cek apakah ada starter sequence dalam row pertama
-
-
-if check_starter_exist_at_first_row(matrix, matrix_width, matrix_height, seq_all, n_seq):
-  #Starter ditemukan di row pertama
-
-  #Ambil semua seq yang memenuhi syarat
-
-  first_row_seq_all = starter_exist_at_first_row(matrix, matrix_width, matrix_height, seq_all, n_seq)
-
-  #Cek token apakah ada token ke-2 di bawahnya. 
-  for first_row_seq in first_row_seq_all: #Cek per avail_seq [[absis,ordinat], [seqs yang mengandung]]
-    for seq in first_row_seq[1]:
-      #cek token ke-2 ada atau Mark (size == 1)
-      if seq[1][1] != Mark: #Seq_size > 1
-        Cek = check_vertical(matrix, seq[1][1], first_row_seq[0][0], first_row_seq[0][1], matrix_width, matrix_height)
-
-        if Cek: #Ditemukan 
-          #Ubah State 
-
-          #Masukin Seq ke list kalau dia masuk itungan -> lanjut ke hitung ke-n
-
-
-      else:
-        temp = []
-        point = seq[0]
-        temp.append(point)
-        
-
-
-  #Didapat seq yang memiliki
-  #Cek token next sampai Mark lewat check_all_direction
-
-
+for i in range (1,matrix_width+1):
+  posisi_buffer = 0
+  all_solution = [] #Inisiasi array yang menampung total poin[0], seluruh token True[1], dan Koordiat token[2]
   
-
-#Cek kasus kalau tidak ditemukan dalam row pertama
-else: 
-  " "
-
-
-
+  
+  #input token (i,1)
+  posisi_buffer += 1
+  if posisi_buffer <= n_buffer:
+    mark_token(matrix, i, 1, buffer, koordinat)
 
 
+  for j in range (1, n_seq+1) :
+    first = get_nth_token_a_sequence(seq, 1, j)
+    if first == get_token(matrix,i,1):
+      #lanjut first_found
+      ""
+      best_first_found = ""
+    else:
+      #lanjut first_not_found
+      ""
+      best_first_not_found = ""
+    
+    if best_first_found[0] >= best_first_not_found[0]: #poin
+      seq_best = best_first_found
+    else:
+      seq_best = best_first_not_found
+
+    
 
 
-
-
+  row_best.append(seq_best)
 
 
 #Dapatkan Solusi Terbaik
-best = best_solution(all_solution)
+best = best_solution(row_best)
 
 
 end_time = end_time()

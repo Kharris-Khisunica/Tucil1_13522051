@@ -5,8 +5,6 @@ import datetime
 from Matrix import *
 
 def check_filename (filename):
-    filename = f"./test/{filename}"
-    print(os.path.abspath(filename))
     if not filename.endswith('.txt'):
         print("Error: Please input a .txt file\n")
         return False

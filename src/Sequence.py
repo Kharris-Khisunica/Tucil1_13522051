@@ -26,18 +26,7 @@ def check_horizontal (matrix, token_yang_dicari, absis, ordinat, width, height):
     else:
         return False
     
-def check_all_direction (matrix, token, absis, ordinat, width, height):
-#Mengecek apakah ditemukan token ke-n+1 saat dicari secara vertikal maupun horizontal
-#dan jika ditemukan, mengembalikan nilai True. 
-    found_vertical = check_vertical (matrix, token, absis, ordinat, height)
-    found_horizontal = check_horizontal (matrix, token, absis, ordinat, width)
 
-    if found_vertical or found_horizontal:
-        change_token_state(matrix,absis,ordinat)
-        return True
-    else:
-        return False
-    
 def check_first (matrix, token, absis, ordinat, width, height):
 #Mengecek apakah dibawah row pertama ditemukan lanjutan, untuk token ke-2
 #untuk kasus 1 = starter ditemukan di row pertama atau token ke-1
@@ -90,24 +79,19 @@ def get_nth_token_a_sequence (seq, nth, nseq):
 #Mendapatkan token ke-n dari sequence ke-nseq
     return seq[nseq-1][1][nth-1]
 
+
 def mark_token (matrix, x,y, buffer, koordinat):
+#Mencopy token dan koordinat lalui mengubah state token menjadi telah dilalui. 
     buffer.append(get_token(matrix, x, y))
     change_token_state(matrix,x,y)
     koordinat.append([get_absis(matrix, x,y), get_ordinat(matrix, x,y)])
+
 
 def first_found (matriks, x, y, seq, nseq, posisi_buffer, n_buffer, buffer, koordinat):
     n_start = 2
     n = n_start
 
-    while posisi_buffer<=n_buffer:
-        if posisi_buffer%2 == 1:
-            if get_nth_token_a_sequence(seq, n, nseq) != '.':
-                check = check_vertical(matriks, get_nth_token_a_sequence(seq, n, ))
-
-
-        
-                
-
+    
             
 
 

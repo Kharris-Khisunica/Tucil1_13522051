@@ -5,6 +5,7 @@ import datetime
 from Matrix import *
 
 def check_filename (filename):
+    filename = f"./Tucil1_13522051/test/{filename}"
     if not filename.endswith('.txt'):
         print("Error: Please input a .txt file\n")
         return False
@@ -15,21 +16,6 @@ def check_filename (filename):
     return True
      
 
-def output_solution(matrix, width, height, seq_all, n_seq, total_time):
-    sol = get_all_True(matrix, width, height)
-    total = get_total_point(seq_all, n_seq)
-
-    print(total) #Total point
-
-    for i in range (0,len(sol),2): #Get Token
-        print(sol[i], end=" ")
-    print('\t')
-
-    for i in range (1,len(sol),2): #Get koordinat
-        print(f"{sol[i][0]},{sol[i][1]}")
-    print('\n')
-
-    print(f"{total_time} ms")
 
 
 def print_solution (best_solution, total_time):
@@ -65,19 +51,13 @@ def print_solution (best_solution, total_time):
     
     write_solution(solution_file)
 
-
-
- 
-
-
-
 def write_solution(solution_file):
     while True:
         input_solusi = input("Apakah ingin menyimpan solusi? (y/n): ")
         print("\t")
         if (input_solusi == 'y'):
             current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = os.path.join("./test/", f"output_{current_time}.txt")
+            filename = os.path.join("./test/", f"solusi_{current_time}.txt")
             with open(filename, 'w') as file:
                 for i in solution_file:
                     file.write(str(i) + '\n')
@@ -87,12 +67,3 @@ def write_solution(solution_file):
             break  
 
 
-def start_time():
-    return time.time()
-
-def end_time():
-    return time.time()
-
-if __name__ == "__main__":
-    print_solution([20, ['a','b', 'c', 'ef'], [[1,2], [2,3], [3,4], [2,4]]], 10)
-    print_solution(None, 0)

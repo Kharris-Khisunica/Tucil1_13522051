@@ -56,9 +56,6 @@ def best_solution (all_solution):
     
     return best
 
-if __name__ == "__main__":
-    print(best_solution([[-3,2], [-2,3]]))
-
 
 
 

@@ -38,12 +38,12 @@ print("====================================\n")
 #Input nama file dan validasi
 while True:
   filename = input("Please input the input's .txt file: ")
-  filename = f"./test/{filename}"
+  
   if check_filename(filename):
     print(f"Horray ! The file '{filename}' has been found. Let's Proceed !")
     break
 
-
+filename = f"./Tucil1_13522051/test/{filename}"
 input_file = open(filename, 'r')
 
 #Input dari file ke array
@@ -90,11 +90,14 @@ for i in range (0,2*n_seq,2):
   seq_all.append(temp)
 
 #Proses
-start_time = start_time()
+start_time = time.time()
 
+"""
 row_best = [] #Menyimpan total poin[0], isi buffer[1], dan koordidnat token[2] dengan poin terbaik untuk koordinat (i,1)
 buffer = []
 koordinat = []
+best = None
+
 
 for i in range (1,matrix_width+1):
   posisi_buffer = 0
@@ -111,17 +114,15 @@ for i in range (1,matrix_width+1):
     first = get_nth_token_a_sequence(seq, 1, j)
     if first == get_token(matrix,i,1):
       #lanjut first_found
-      ""
-      best_first_found = ""
+    
+      best_first_found = first_found()
     else:
       #lanjut first_not_found
-      ""
-      best_first_not_found = ""
+      
+      best_first_not_found = first_not_found()
+
     
-    if best_first_found[0] >= best_first_not_found[0]: #poin
-      seq_best = best_first_found
-    else:
-      seq_best = best_first_not_found
+    seq_best = 
 
     
 
@@ -132,28 +133,18 @@ for i in range (1,matrix_width+1):
 #Dapatkan Solusi Terbaik
 best = best_solution(row_best)
 
-
-end_time = end_time()
+"""
+end_time = time.time()
 
 total_time = (end_time - start_time)*1000
 
 
 #Output Solusi ke layar dan keluarkan prompt apakah mau menyimpan ke dalam .txt
-print_solution(best, total_time)
+#print_solution(best, total_time)
+print_solution(None, total_time)
 
 
 
-
-
-
-if __name__ == "__main__":
-  print(f"Isi file: {isi_file}")
-  print(f"Banyak Buffer: {buffer}")
-  print(f"Matrix Width: {matrix_width}")
-  print(f"Matrix Height: {matrix_height}")
-  print(f"Matriks: {matrix}")
-  print(f"Sequence all: {seq_all}")
-  print(f"Total time: {total_time} ms")
 
 input_file.close()
 
